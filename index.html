@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GARNES – Við þjónustum allar gerðir tölvukerfa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --orange: #FF7A00;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Orange Button */
+        .btn-orange {
+            background: linear-gradient(135deg, #FF7A00 0%, #E86E00 100%);
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-orange:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 122, 0, 0.4);
+        }
+
+        /* Service Card */
+        .service-card {
+            background: white;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            padding: 32px 24px;
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            border-top-color: #FF7A00;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+            transform: translateY(-4px);
+        }
+
+        /* Team Photo */
+        .team-photo {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            object-fit: cover;
+            margin-bottom: 16px;
+        }
+
+        /* Logo styling */
+        .logo-img {
+            height: 36px;
+            width: auto;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 24px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Orange accent line */
+        .orange-line {
+            width: 60px;
+            height: 3px;
+            background: #FF7A00;
+            margin-bottom: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f0f0f0;
+            z-index: 50;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #666;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #FF7A00;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #f8f8f8 0%, white 100%);
+            padding-top: 120px;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .btn-orange {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1a1a1a;
+            border: 2px solid #ddd;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #FF7A00;
+            color: #FF7A00;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #FF7A00;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Services grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        /* Contact form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #FF7A00;
+            box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #999;
+            padding: 60px 24px 30px;
+        }
+
+        footer h4 {
+            color: white;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        footer a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: #FF7A00;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 32px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-orange, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 60px 24px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container" style="max-width: 1200px;">
+            <img src="Assets/Header-Main_Garnes_M365-header.png" alt="GARNES" style="height: 40px; width: auto;">
+
+            <div class="nav-links">
+                <a href="#services">Þjónustur</a>
+                <a href="#team">Teymið</a>
+                <a href="#contact">Hafa samband</a>
+                <a href="tel:+3545372500" style="color: #FF7A00; font-weight: 600;">+354 537-2500</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Við þjónustum allar gerðir tölvukerfa.</h1>
+
+                <p class="hero-desc">
+                    Garnes veitir þjónustu sem byggir á áralangri reynslu í uppbyggingu og rekstri upplýsingatækni lítilla og meðalstórra fyrirtækja.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-orange">Fá tilboð</a>
+                    <a href="tel:+3545372500" class="btn-secondary">Hringja +354 537-2500</a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">70+</div>
+                        <div class="stat-label">Fyrirtæki nota okkar þjónustu</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">18+</div>
+                        <div class="stat-label">Ár af reynslu</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Eftirlit og stuðningur</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" style="background: #f8f8f8;">
+        <div class="container">
+            <div class="orange-line"></div>
+            <h2>Okkar þjónustur</h2>
+
+            <div class="services-grid" style="margin-top: 48px;">
+
+                <div class="service-card">
+                    <div style="font-size: 32px; margin-bottom: 16px;">⚙️</div>
+                    <h3 style="font-weight: 700; margin-bottom: 12px; font-size: 18px;">Rekstur</h3>
+                    <p>Garnes býður upp á heildarrekstur og þjónustur á tölvukerfum, stórum sem smáum.</p>
+                </div>
+
+                <div class="service-card">
+                    <div style="font-size: 32px; margin-bottom: 16px;">💾</div>
+                    <h3 style="font-weight: 700; margin-bottom: 12px; font-size: 18px;">Afritun</h3>
+                    <p>Garnes býður afritunarlausn fyrir fyrirtæki þar sem afritað er eftir þörfum og afrit geymd á öruggum stað.</p>
+                </div>
+
+                <div class="service-card">
+                    <div style="font-size: 32px; margin-bottom: 16px;">☎️</div>
+                    <h3 style="font-weight: 700; margin-bottom: 12px; font-size: 18px;">Símkerfi</h3>
+                    <p>Garnes eru sérfræðingar í símkerfum, bjóðum upp á lausnir sem henta best þínu fyrirtæki.</p>
+                </div>
+
+                <div class="service-card">
+                    <div style="font-size: 32px; margin-bottom: 16px;">🎯</div>
+                    <h3 style="font-weight: 700; margin-bottom: 12px; font-size: 18px;">Ráðgjöf</h3>
+                    <p>Garnes veitir faglega og óháða ráðgjöf ásamt úttektum á innri og ytri kerfum.</p>
+                </div>
+
+                <div class="service-card">
+                    <div style="font-size: 32px; margin-bottom: 16px;">🔒</div>
+                    <h3 style="font-weight: 700; margin-bottom: 12px; font-size: 18px;">Öryggi</h3>
+                    <p>Garnes býður viðskiptavinum sínum upp á fullkomnar öryggislausnir með 24/7 vöktun á útstöðvum og netþjónum.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <div class="orange-line"></div>
+            <h2>Okkar teymi</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; margin-top: 48px;">
+
+                <div style="text-align: center;">
+                    <img src="Old/Elias+-+++128587+WEB (1).webp" alt="Elías Björnsson" class="team-photo">
+                    <h3 style="font-weight: 700; margin-bottom: 4px;">Elías Björnsson</h3>
+                    <p style="font-size: 14px; color: #999;">Eigandi & Sérfræðingur</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <img src="Old/bjorn_black&white.webp" alt="Björn Þór Sigurðarson" class="team-photo">
+                    <h3 style="font-weight: 700; margin-bottom: 4px;">Björn Þór Sigurðarson</h3>
+                    <p style="font-size: 14px; color: #999;">Eigandi & Sérfræðingur</p>
+                </div>
+
+                <div style="text-align: center;">
+                    <img src="Old/Tore-128007-WEB.webp" alt="Tore Foss" class="team-photo">
+                    <h3 style="font-weight: 700; margin-bottom: 4px;">Tore Foss</h3>
+                    <p style="font-size: 14px; color: #999;">Eigandi & Framkvæmdastjóri</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: #f8f8f8;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 60px;">
+
+                <div>
+                    <div class="orange-line"></div>
+                    <h2 style="font-size: 36px;">Hafa samband</h2>
+
+                    <div style="margin-top: 40px; space-y: 30px;">
+                        <div style="margin-bottom: 36px;">
+                            <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 8px;">Sími</h4>
+                            <a href="tel:+3545372500" style="font-size: 20px; font-weight: 700; color: #FF7A00; text-decoration: none;">+354 537-2500</a>
+                            <p style="color: #999; font-size: 14px; margin-top: 4px;">8:00–17:00, mán–fös</p>
+                        </div>
+
+                        <div style="margin-bottom: 36px;">
+                            <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 8px;">Netfang</h4>
+                            <a href="mailto:garnes@garnes.is" style="font-size: 16px; font-weight: 700; color: #FF7A00; text-decoration: none;">garnes@garnes.is</a>
+                            <p style="color: #999; font-size: 14px; margin-top: 4px;">hjalp@garnes.is</p>
+                        </div>
+
+                        <div>
+                            <h4 style="font-weight: 700; color: #1a1a1a; margin-bottom: 8px;">Staðsetning</h4>
+                            <p style="color: #1a1a1a; font-weight: 600;">Silfursmári 12</p>
+                            <p style="color: #999;">201 Kópavogur, Ísland</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid #e0e0e0;">
+                    <h3 style="font-weight: 700; margin-bottom: 24px; font-size: 24px;">Fá tilboð</h3>
+
+                    <form>
+                        <div class="form-group">
+                            <label>Nafn</label>
+                            <input type="text" placeholder="Nafn þitt" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Netfang</label>
+                            <input type="email" placeholder="þinn@fyrirtæki.is" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fyrirtækisnafn</label>
+                            <input type="text" placeholder="Fyrirtæki þitt" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Sími</label>
+                            <input type="tel" placeholder="+354 XXX XXXX" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Skilaboð</label>
+                            <textarea placeholder="Segðu okkur aðeins um fyrirtæki þitt..." rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-orange" style="width: 100%; padding: 14px; border-radius: 8px; font-size: 16px;">
+                            Senda fyrirspurn
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Fyrirtæki</h4>
+                    <ul>
+                        <li><a href="https://garnes.is/um-okkur">Um okkur</a></li>
+                        <li><a href="https://garnes.is">Heimasíða</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Þjónustur</h4>
+                    <ul>
+                        <li><a href="#services">Rekstur</a></li>
+                        <li><a href="#services">Öryggi</a></li>
+                        <li><a href="#services">Ráðgjöf</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Lögmál</h4>
+                    <ul>
+                        <li><a href="https://garnes.is/skilmalar">Skilmálar</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Tengiliðir</h4>
+                    <ul>
+                        <li><a href="tel:+3545372500">+354 537-2500</a></li>
+                        <li><a href="mailto:garnes@garnes.is">garnes@garnes.is</a></li>
+                        <li>Kópavogur, Ísland</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 Garnes Data ehf. Allir réttirnir áskildir.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
